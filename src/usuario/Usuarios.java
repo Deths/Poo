@@ -120,7 +120,7 @@ public class Usuarios {
 		System.out.println("Insira a data da viagem: ");
 		int data = input.nextInt();
 		System.out.println("Possuímos as viagens a seguir para o dia " +data);
-		Data dataEscolhida = agenda.datas[data-1];
+		Data dataEscolhida = agenda.datas[data-1]; //tetse
 		dataEscolhida.imprimeVoosDoDia(); // fazer metodo
 		System.out.println("Digite o código da viagem escolhida: ");
 		int codigo = input.nextInt();
