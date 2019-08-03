@@ -1,6 +1,5 @@
 package usuario;
 
-import usuario.Compras;
 import agenda.Voo;
 import agenda.Poltrona;
 

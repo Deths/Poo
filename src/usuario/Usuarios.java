@@ -130,7 +130,7 @@ public class Usuarios {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Insira o mês da viagem (nº mês): ");
 		int mes = input.nextInt(); 
-	usar o mes tbm como critério
+	//usar o mes tbm como critério
 		System.out.println("Insira o dia da viagem (nº dia): ");
 		int data = input.nextInt();
 		System.out.println("Possuímos as viagens a seguir para o dia " +data);
