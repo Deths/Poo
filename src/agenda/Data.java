@@ -7,12 +7,12 @@ public class Data {
 	protected int numeroDeVoos;
 	public Voo[] listaDeVoos = new Voo[4];
 	private Scanner input;
-	boolean status;
+	boolean status = false;
 	
 	public Data(int Data) {
+		System.out.println("Data criada\n");
 		this.data = Data;
 		this.numeroDeVoos = 0;
-		this.listaDeVoos = null;
 		this.status =  true;
 	}
 		
@@ -23,6 +23,7 @@ public class Data {
 		String partida = null;
 		String horarioChegada = null;
 		String horarioSaida = null;
+		String mesAux = mes;
 		int codigoVoo = -1;
 		
 		input = new Scanner(System.in);
@@ -50,34 +51,29 @@ public class Data {
 		System.out.println("Código do Voo");
 		codigoVoo = input.nextInt();
 
-		listaDeVoos[numeroDeVoos] =  new Voo(nome, compania, destino, partida, horarioChegada, horarioSaida, codigoVoo, mes);
+		listaDeVoos[numeroDeVoos] =  new Voo(nome, compania, destino, partida, horarioChegada, horarioSaida, codigoVoo, mesAux);
 		this.numeroDeVoos++;
 	}
 
 	public void removeVoo() { 
-		
 		int vooRemovido;
 		input = new Scanner(System.in);
-
-		System.out.println("Escolha o voo a ser removido");
+		
+		imprimeVoosDoDia();
+		
+		System.out.println("Escolha o código do voo a ser removido");
 		vooRemovido = input.nextInt();
-
+		
 		for (int i = 0; i < 4; i++) {
 			if(vooRemovido == listaDeVoos[i].getCodigoVoo()) {
 				listaDeVoos[i] = null;
-				
-				if (i == 3) {
-					return;
-				} else {
-					for (int j = i; i < 3; i++) {
-						listaDeVoos[j] = listaDeVoos[j+1];
-					}
-					return;
-				}	
+				for(int j = i ;i < 3; i++) {
+					listaDeVoos[j]=listaDeVoos[j+1];			
+				}
+				listaDeVoos[3] = null;
+				return;
 			}
 		}
-		
-		//ERRO
 	}
 
 	public int buscaVoo(int codigoVoo) {
@@ -93,7 +89,7 @@ public class Data {
 		for(int i=0; i<4; i++) {
 			if (listaDeVoos[i] != null) {
 				Voo vooAtual = listaDeVoos[i];
-				System.out.println("Voo " +vooAtual.toString());
+				System.out.println(vooAtual.toString());
 			}
 		}
 	}

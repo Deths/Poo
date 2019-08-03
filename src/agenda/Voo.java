@@ -4,7 +4,6 @@ import java.util.Arrays;
 import usuario.*;
 import agenda.*;
 
-
 public class Voo {
 	private String mes;
 	private String nome;
@@ -23,7 +22,7 @@ public class Voo {
 	Poltrona[][] Economica = new Poltrona[4][4];
 
 	public Voo (String nome, String compania,String destino, String partida, String horarioChegada, String horarioSaida, int codigoVoo, String mes) {
-
+		System.out.println("Voo criado\n");
 		this.nome = nome;
 		this.compania =  compania;
 		this.destino =  destino;
@@ -122,14 +121,10 @@ public class Voo {
 		if(classe == 1) {
 			if(Primeira[linha][coluna].getClienteID() < 0) {
 				Primeira[linha][coluna].ocupaPoltrona(clienteID);
-			} else {
-				//exception
 			}
 		} else if(classe == 2) {
 			if(Economica[linha][coluna].getClienteID() < 0) {
 				Economica[linha][coluna].ocupaPoltrona(clienteID);
-			} else {
-				//exception
 			}
 		}
 		this.poltronasVazias--;
@@ -166,8 +161,6 @@ public class Voo {
 				}
 				System.out.println();
 			}
-		} else {
-			// exception
 		}
 	}
 	
@@ -199,7 +192,7 @@ public class Voo {
 	public String toString() {
 		return "Voo [compania=" + compania + ", destino=" + destino + ", horarioChegada=" + horarioChegada
 				+ ", horarioSaida=" + horarioSaida + ", nome=" + nome + ", partida=" + partida + ", poltronasCheias="
-				+ poltronasCheias + ", poltronasVazias=" + poltronasVazias + "]";
+				+ poltronasCheias + ", poltronasVazias=" + poltronasVazias + ", codigoVoo "+ codigoVoo +"]";
 	}
 
 	public String getNome() {
