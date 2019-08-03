@@ -1,7 +1,7 @@
 package agenda;
 
 public class MesInexistente extends Exception {
-	public MesInexistente() {
-		System.out.print("Não existe esse mes");
+	public MesInexistente(String mesSelecionado) {
+		System.out.print("Não existe esse mes <" + mesSelecionado + " >");
 	}
 }
