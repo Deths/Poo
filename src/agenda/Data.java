@@ -109,10 +109,17 @@ public class Data {
 	}
 
 //Metodo que imprime os voos do vetor listaDeVoos
-	public void imprimeVoos() {
-		for(int i=0; i<4; i++) {
-			Voo vooAtual = listaDeVoos[i];//vetor vooAtual é o vetor listaDeVoos
-			System.out.println("Voo " +vooAtual.toString());
+	public void imprimeVoosDoMes(Agenda agenda) {
+		int i;
+		int passou=0;
+		for(i=0; i<4; i++) {
+			if(listaDeVoos[i].getAgenda().equals(agenda)) {
+				System.out.println("Voo " +listaDeVoos[i].toString());
+				passou++;
+			}			
+		}
+		if(passou==0) {
+			System.out.println("Não existe voos para esse mes");
 		}
 	}
 
