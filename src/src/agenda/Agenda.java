@@ -5,7 +5,7 @@ public class Agenda {
   private String mes;
   public Data[] datas;
 
-  public Agenda(String mes){
+  public Agenda(String mes) {
     setMes(mes);
     if(mes.equals("Janeiro") || mes.equals("Março") || mes.equals("Maio") || mes.equals("Julho")
       || mes.equals("Agosto") || mes.equals("Outubro") || mes.equals("Dezembro")) {
@@ -14,28 +14,31 @@ public class Agenda {
         datas = new Data[30];
       } else if(mes.equals("Fevereiro")) {
         datas = new Data[28];
+      } else {
+        //exception
       }
-  }
-    
-  public void setMes(String mes) {
-    this.mes = mes;
-  }
-  
-  public String getMes() {
-    return mes;
   }
 
   public void imprimeVoos() {
     System.out.println("-------------------------------------------------------");
-    System.out.println("Vôos disponíveis para " +getMes());
+    System.out.println("VÃ´os disponÃ­veis para" +getMes());
     for(int i = 0; i<datas.length; i++) {
-      if(datas[i].numeroDeVoos > 0) {
+      if(datas[i].getNumeroDeVoos() > 0) {
         System.out.println("Dia" +i);
-        datas[i].imprimeData();
+        datas[i].imprimeVoosDoDia();
       } else {
         System.out.println();
       }
     }
     System.out.println("-------------------------------------------------------");
   }
+
+  public void setMes(String mes) {
+    this.mes = mes;
+  }
+
+  public String getMes() {
+    return mes;
+  }
 }
+
