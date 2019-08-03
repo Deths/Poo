@@ -92,10 +92,11 @@ public class Data {
 		}
 
 		if (i == 3) {
-			throw new NaoExisteVoo();
+			throw new NaoExisteVoo();//Caso não exista voo especificado
 		}
 	}
 
+//Metodo que procura por voos com seu codigo - retorna a posição no vetor listaDeVoos ou -1 se não existe
 	public int buscaVoo(int codigoVoo) {
 		for(int i=0; i < 4; i++) {
 			if(listaDeVoos[i].getCodigoVoo() == codigoVoo) {
@@ -105,13 +106,14 @@ public class Data {
 		return -1;
 	}
 
-	public void imprimeVoosDoDia() {
+//Metodo que imprime os voos do vetor listaDeVoos
+	public void imprimeVoos() {
 		for(int i=0; i<4; i++) {
-			Voo vooAtual = listaDeVoos[i];
+			Voo vooAtual = listaDeVoos[i];//vetor vooAtual é o vetor listaDeVoos
 			System.out.println("Voo " +vooAtual.toString());
 		}
 	}
-	
+
 	public void imprimeData() {
 		
 	}

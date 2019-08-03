@@ -32,6 +32,7 @@ public class Usuario {
 	}
 
 	public void imprimeCompras() {
+		//Fazer método 
 	}
 
 	public void apagaCompra(int codigo) {
