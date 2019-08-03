@@ -126,17 +126,12 @@ public class Usuarios {
 	}
 
 //Método de compra de vôos
-	public void comprarVoo(Agenda agenda) {
+	public void comprarVoo(Agenda agenda, int dia) {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Insira o mês da viagem (nº mês): ");
-		int mes = input.nextInt(); 
-	//usar o mes tbm como critério
-		System.out.println("Insira o dia da viagem (nº dia): ");
-		int data = input.nextInt();
-		System.out.println("Possuímos as viagens a seguir para o dia " +data);
+		System.out.println("Possuímos as viagens a seguir para o dia " +dia);
 		//parei aqui, vamos ver a agenda
-		Data dataEscolhida = agenda.datas[data-1];
-		dataEscolhida.imprimeVoosDoDia(); // fazer metodo
+		Data dataEscolhida = agenda.datas[dia-1];
+		dataEscolhida.imprimeVoos(); // fazer metodo
 		System.out.println("Digite o código da viagem escolhida: ");
 		int codigo = input.nextInt();
 		int	codigoDoVoo = dataEscolhida.buscaVoo(codigo);
