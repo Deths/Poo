@@ -21,7 +21,7 @@ public class Compras {
 	}
 	
 	public void imprimeCompras() {
-		for(int i=0; i<indice; i++) {
+		for(int i=0; i <= indice; i++) {
 			System.out.println("Código da compra: " +i);
 			System.out.println(compra[i].getVoo().toString());
 			System.out.println("Poltrona -> linha:" +compra[i].getPoltrona().getLinha()+ "coluna: " +compra[i].getPoltrona().getColuna());
@@ -40,8 +40,12 @@ public class Compras {
 	
 	public void apagaCompra(int codigo) {
 		compra[codigo] = null;
-		for(int i=codigo; i<indice-1; i++) {
-			compra[i] = compra[i+1];
+		if(indice == 1) {
+			compra[0] = compra[1];
+		}else {
+			for(int i=codigo; i<indice-1; i++) {
+				compra[i] = compra[i+1];
+			}
 		}
 		indice--;
 	}

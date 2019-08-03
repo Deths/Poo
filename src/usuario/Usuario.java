@@ -1,5 +1,4 @@
 package usuario;
-
 import agenda.Poltrona;
 import agenda.Voo;
 

@@ -96,7 +96,7 @@ public class Teste {
 					try { //<----------------------
 						System.out.println("-------------------------------------------------------");
 						System.out.println("O que gostaria de fazer?");
-						if(usuarios.getTipoDeUsuario().equals("Atendente")) {
+						if(usuarios.getTipoDeUsuario().equalsIgnoreCase("Atendente")) {
 							System.out.println("1- Verificar voos disponíveis");
 							System.out.println("2- Criar um novo voo");
 							System.out.println("3- Deletar um voo");
@@ -397,7 +397,7 @@ public class Teste {
 									loop = false;
 									break;
 							}
-						} else if(usuarios.getTipoDeUsuario().equals("Cliente")) {
+						} else if(usuarios.getTipoDeUsuario().equalsIgnoreCase("Cliente")) {
 							System.out.println("1- Verificar voos disponíveis");
 							System.out.println("2- Comprar voos");
 							System.out.println("3- Verificar passagens adiquiridas");

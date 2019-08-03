@@ -119,13 +119,13 @@ public class Usuarios {
 		Scanner input = new Scanner(System.in);
 		//System.out.println("Insira a data da viagem: ");
 		//int data = input.nextInt();
-		System.out.println("Possuímos as viagens a seguir para o dia " +data);
-		Data dataEscolhida = agenda.datas[data-1];
+		System.out.println("Possuímos as viagens a seguir para o dia " + (data + 1));
+		Data dataEscolhida = agenda.datas[data];
 		dataEscolhida.imprimeVoosDoDia();
 		System.out.println("Digite o código da viagem escolhida: ");
 		int codigo = input.nextInt();
 		int	codigoDoVoo = dataEscolhida.buscaVoo(codigo);
-		if(codigoDoVoo > 0) {
+		if(codigoDoVoo >= 0) {
 			System.out.println("Digite o número de passagens que gostaria de comprar: ");
 			int passagens = input.nextInt();
 			System.out.println("Algum dos passageiros é menor de idade? Se sim, digite a quantidade, se não, digite 0");
@@ -184,7 +184,7 @@ public class Usuarios {
 		coluna = input.nextInt();
 		
 		Usuario clienteAtual = clientes[usuarioID];
-		Data dataDoVoo = agenda.datas[data];
+		Data dataDoVoo = agenda.datas[data - 1];
 		vooID = dataDoVoo.buscaVoo(codigoVoo);
 		dataDoVoo.listaDeVoos[vooID].removeDaPoltrona(linha, coluna, classe);
 		clienteAtual.apagaCompra(codigoCompra);

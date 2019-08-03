@@ -21,7 +21,7 @@ public class Voo {
 	Poltrona[][] Primeira = new Poltrona[4][4];
 	Poltrona[][] Economica = new Poltrona[4][4];
 
-	public Voo (String nome, String compania,String destino, String partida, String horarioChegada, String horarioSaida, int codigoVoo, String mes) {
+	public Voo (String nome, String compania,String destino, String partida, String horarioChegada, String horarioSaida, int codigoVoo, float precoPrimeiraClasse, float precoClasseEconomica) {
 		System.out.println("Voo criado\n");
 		this.nome = nome;
 		this.compania =  compania;
@@ -32,11 +32,24 @@ public class Voo {
 		this.poltronasVazias = 32; //Total de poltronas no avião =  32 para todos os aviões.
 		this.poltronasCheias = 0;
 		this.mes = mes;
+		this.precoPrimeiraClasse = precoPrimeiraClasse;
+		this.precoClasseEconomica = precoClasseEconomica;
 		setCodigoVoo(codigoVoo);
-
-		this.Primeira = null;
-		this.Economica = null;
+		iniciaPoltronas();
 	}
+	
+	public void iniciaPoltronas() {
+        for(int i=0; i<4; i++) {
+            for(int j=0; j<4; j++) {
+                Primeira[i][j] = new Poltrona(-1, i, j);
+            }
+        }
+        for(int i=0; i<4; i++) {
+            for(int j=0; j<4; j++) {
+                Economica[i][j] = new Poltrona(-1, i, j);
+            }
+        }
+    }
 	
 	//Comprar poltronas;
 	public void adicionaPoltrona (String Cliente, String Classe, int numeroDeCadeiras, int tipo) {
@@ -166,9 +179,9 @@ public class Voo {
 	
 	public Poltrona buscaPoltrona(int linha, int coluna, int classe) {
 		if(classe == 1) {
-			return Primeira[linha][classe];
+			return Primeira[linha][coluna];
 		} else {
-			return Economica[linha][classe];
+			return Economica[linha][coluna];
 		}
 	}
 	
@@ -181,10 +194,12 @@ public class Voo {
 	}
 	
 	public float calculaValorTotal(int passagens, int menoresDeIdade, int classe) {
+		System.out.print(precoClasseEconomica);
 		if(classe == 1) {
 			return (precoPrimeiraClasse*(passagens-menoresDeIdade));
 		} else {
 			return (precoClasseEconomica*(passagens-menoresDeIdade));
+			
 		}
 	}
 	

@@ -17,43 +17,51 @@ public class Data {
 	}
 		
 	public void adicionaVoo(String mes) {
-		String nome = null;
-		String compania = null;
-		String destino = null;
-		String partida = null;
-		String horarioChegada = null;
-		String horarioSaida = null;
-		String mesAux = mes;
-		int codigoVoo = -1;
-		
-		input = new Scanner(System.in);
 
-		System.out.println("Entre dados para o novo Voo");
+        String nome = null;
+        String compania = null;
+        String destino = null;
+        String partida = null;
+        String horarioChegada = null;
+        String horarioSaida = null;
+        int codigoVoo = -1;
+        float precoPrimeiraClasse = 0;
+        float precoClasseEconomica = 0;
 
-		System.out.println("Nome do Voo");
-		nome = input.nextLine();
+        input = new Scanner(System.in);
 
-		System.out.println("Nome da compania");
-		compania = input.nextLine();
+        System.out.println("Entre dados para o novo Voo");
 
-		System.out.println("Destino");
-		destino = input.nextLine();
+        System.out.println("Nome do Voo");
+        nome = input.nextLine();
 
-		System.out.println("Partida");
-		partida = input.nextLine();
+        System.out.println("Nome da compania");
+        compania = input.nextLine();
 
-		System.out.println("Horario de chegada");
-		horarioChegada = input.nextLine();
+        System.out.println("Destino");
+        destino = input.nextLine();
 
-		System.out.println("Horario de saida");
-		horarioSaida =  input.nextLine();
+        System.out.println("Partida");
+        partida = input.nextLine();
 
-		System.out.println("Código do Voo");
-		codigoVoo = input.nextInt();
+        System.out.println("Horario de chegada");
+        horarioChegada = input.nextLine();
 
-		listaDeVoos[numeroDeVoos] =  new Voo(nome, compania, destino, partida, horarioChegada, horarioSaida, codigoVoo, mesAux);
-		this.numeroDeVoos++;
-	}
+        System.out.println("Horario de saida");
+        horarioSaida =  input.nextLine();
+
+        System.out.println("Código do Voo");
+        codigoVoo = input.nextInt();
+
+        System.out.println("Preço Primeira Classe");
+        precoPrimeiraClasse = input.nextFloat();
+
+        System.out.println("Preço Classe Econômica");
+        precoClasseEconomica = input.nextFloat();
+
+        listaDeVoos[numeroDeVoos] =  new Voo(nome, compania, destino, partida, horarioChegada, horarioSaida, codigoVoo, precoPrimeiraClasse, precoClasseEconomica);
+        this.numeroDeVoos++;
+    }
 
 	public void removeVoo() { 
 		int vooRemovido;
@@ -79,6 +87,7 @@ public class Data {
 	public int buscaVoo(int codigoVoo) {
 		for(int i=0; i < 4; i++) {
 			if(listaDeVoos[i].getCodigoVoo() == codigoVoo) {
+				System.out.println(i);
 				return i;
 			}
 		}
