@@ -5,22 +5,24 @@ import usuario.Usuarios;
 
 public class Teste {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws OpcaoInvalida {
 		Usuarios usuarios = new Usuarios();
 		Scanner input = new Scanner(System.in);
+		try {
+			Agenda janeiro = new Agenda("Janeiro");
+			Agenda fevereiro = new Agenda("Fevereiro");
+			Agenda março = new Agenda("Março");
+			Agenda abril = new Agenda("Abril");
+			Agenda maio = new Agenda("Maio");
+			Agenda junho = new Agenda("Junho");
+			Agenda julho = new Agenda("Julho");
+			Agenda agosto = new Agenda("Agosto");
+			Agenda setembro = new Agenda("Setembro");
+			Agenda outubro = new Agenda("Outubro");
+			Agenda novembro = new Agenda("Novembro");
+			Agenda dezembro = new Agenda("Dezembro");
 		
-		Agenda janeiro = new Agenda("Janeiro");
-		Agenda fevereiro = new Agenda("Fevereiro");
-		Agenda março = new Agenda("Março");
-		Agenda abril = new Agenda("Abril");
-		Agenda maio = new Agenda("Maio");
-		Agenda junho = new Agenda("Junho");
-		Agenda julho = new Agenda("Julho");
-		Agenda agosto = new Agenda("Agosto");
-		Agenda setembro = new Agenda("Setembro");
-		Agenda outubro = new Agenda("Outubro");
-		Agenda novembro = new Agenda("Novembro");
-		Agenda dezembro = new Agenda("Dezembro");
+		
 		
 		int decisao;
 		int tipoDeUsuario;
@@ -28,13 +30,14 @@ public class Teste {
 		int diaSelecionado; 
 				
 		System.out.println("Bem-vindo");
-		
-		System.out.println("O que gostaria de fazer? (1-Cadastrar/2-Login)");
-		decisao = input.nextInt();
-		
-		System.out.println("Você é um cliente ou um atendente? (1/2)");
-		tipoDeUsuario = input.nextInt();
-		
+		do {
+			System.out.println("O que gostaria de fazer? (1-Cadastrar/2-Login)");
+			decisao = input.nextInt();
+		}while(decisao!= 1 && decisao!= 2);
+		do {
+			System.out.println("Você é um cliente ou um atendente? (1/2)");
+			tipoDeUsuario = input.nextInt();
+		}while(tipoDeUsuario !=1 && tipoDeUsuario != 2);
 		System.out.println("Digite o nome de usuário: ");
 		String usuario = input.next();
 		
@@ -46,20 +49,14 @@ public class Teste {
 				usuarios.novoCliente(usuario, senha);
 			} else if(tipoDeUsuario == 2) {
 				usuarios.novoAtendente(usuario, senha);
-			} else {
-				//fazer uma exception
 			}
 		} else if(decisao == 2) {
 			if(tipoDeUsuario == 1) {
 				usuarios.loginCliente(usuario, senha);
 			} else if(tipoDeUsuario == 2) {
 				usuarios.loginAtendente(usuario, senha);
-			} else {
-				//fazer uma exception
-			}
-		} else {
-			//fazer uma exception
-		}
+			} 
+		} 
 		
 		if(usuarios.getLogado() == 1) {
 			System.out.println("Você está logado!");
@@ -236,100 +233,104 @@ public class Teste {
 					
 					//Dado mês e dia, checa se a data já foi iniciada, e remove um voo da data
 					case 3:
-						System.out.println("Em qual mês você deseja remover um voo?");
-						mesSelecionado = input.nextLine();
-						System.out.println("Em qual dia?");
-						diaSelecionado =  input.nextInt();
-						diaSelecionado--;
-
-						switch(mesSelecionado) {
-						case "Janeiro":
-							if (janeiro.datas[diaSelecionado].getStatus()) {
-								janeiro.datas[diaSelecionado].removeVoo();
-							} else {
-								//exception "data não existe".
+						try {
+							System.out.println("Em qual mês você deseja remover um voo?");
+							mesSelecionado = input.nextLine();
+							System.out.println("Em qual dia?");
+							diaSelecionado =  input.nextInt();
+							diaSelecionado--;
+							
+							switch(mesSelecionado) {
+							case "Janeiro":
+								if (janeiro.datas[diaSelecionado].getStatus()) {
+									janeiro.datas[diaSelecionado].removeVoo();
+								} else {
+									//exception "data não existe".
+								}
+								break;
+							case "Fevereiro":
+								if (fevereiro.datas[diaSelecionado].getStatus()) {
+									fevereiro.datas[diaSelecionado].removeVoo();
+								} else {
+									//exception
+								}
+								break;
+							case "Março":
+								if (março.datas[diaSelecionado].getStatus()) {
+									março.datas[diaSelecionado].removeVoo();
+								} else {
+									//exception
+								}
+								break;
+							case "Abril":
+								if (abril.datas[diaSelecionado].getStatus()) {
+									abril.datas[diaSelecionado].removeVoo();
+								} else {
+									//exception
+								}
+								break;
+							case "Maio":
+								if (maio.datas[diaSelecionado].getStatus()) {
+									maio.datas[diaSelecionado].removeVoo();
+								} else {
+									//exception
+								}
+								break;
+							case "Junho":
+								if (junho.datas[diaSelecionado].getStatus()) {
+									junho.datas[diaSelecionado].removeVoo();
+								} else {
+									//exception
+								}
+								break;
+							case "Julho":
+								if (julho.datas[diaSelecionado].getStatus()) {
+									julho.datas[diaSelecionado].removeVoo();
+								} else {
+									//exception
+								}
+								break;
+							case "Agosto":
+								if (julho.datas[diaSelecionado].getStatus()) {
+									julho.datas[diaSelecionado].removeVoo();
+								} else {
+									//exception
+								}
+								break;
+							case "Setembro":
+								if (setembro.datas[diaSelecionado].getStatus()) {
+									setembro.datas[diaSelecionado].removeVoo();
+								} else {
+									//exception
+								}
+								break;
+							case "Outubro":
+								if (outubro.datas[diaSelecionado].getStatus()) {
+									outubro.datas[diaSelecionado].removeVoo();
+								} else {
+									//exception
+								}
+								break;
+							case "Novembro":
+								if (novembro.datas[diaSelecionado].getStatus()) {
+									novembro.datas[diaSelecionado].removeVoo();
+								} else {
+									//exception
+								}
+								break;
+							case "Dezembro":
+								if (dezembro.datas[diaSelecionado].getStatus()) {
+									dezembro.datas[diaSelecionado].removeVoo();
+								} else {
+									//exception
+								}
+								break;
+							default:
+								//exception "mês não existe"
+								break;
 							}
-							break;
-						case "Fevereiro":
-							if (fevereiro.datas[diaSelecionado].getStatus()) {
-								fevereiro.datas[diaSelecionado].removeVoo();
-							} else {
-								//exception
-							}
-							break;
-						case "Março":
-							if (março.datas[diaSelecionado].getStatus()) {
-								março.datas[diaSelecionado].removeVoo();
-							} else {
-								//exception
-							}
-							break;
-						case "Abril":
-							if (abril.datas[diaSelecionado].getStatus()) {
-								abril.datas[diaSelecionado].removeVoo();
-							} else {
-								//exception
-							}
-							break;
-						case "Maio":
-							if (maio.datas[diaSelecionado].getStatus()) {
-								maio.datas[diaSelecionado].removeVoo();
-							} else {
-								//exception
-							}
-							break;
-						case "Junho":
-							if (junho.datas[diaSelecionado].getStatus()) {
-								junho.datas[diaSelecionado].removeVoo();
-							} else {
-								//exception
-							}
-							break;
-						case "Julho":
-							if (julho.datas[diaSelecionado].getStatus()) {
-								julho.datas[diaSelecionado].removeVoo();
-							} else {
-								//exception
-							}
-							break;
-						case "Agosto":
-							if (julho.datas[diaSelecionado].getStatus()) {
-								julho.datas[diaSelecionado].removeVoo();
-							} else {
-								//exception
-							}
-							break;
-						case "Setembro":
-							if (setembro.datas[diaSelecionado].getStatus()) {
-								setembro.datas[diaSelecionado].removeVoo();
-							} else {
-								//exception
-							}
-							break;
-						case "Outubro":
-							if (outubro.datas[diaSelecionado].getStatus()) {
-								outubro.datas[diaSelecionado].removeVoo();
-							} else {
-								//exception
-							}
-							break;
-						case "Novembro":
-							if (novembro.datas[diaSelecionado].getStatus()) {
-								novembro.datas[diaSelecionado].removeVoo();
-							} else {
-								//exception
-							}
-							break;
-						case "Dezembro":
-							if (dezembro.datas[diaSelecionado].getStatus()) {
-								dezembro.datas[diaSelecionado].removeVoo();
-							} else {
-								//exception
-							}
-							break;
-						default:
-							//exception "mês não existe"
-							break;
+						}catch(NaoExisteVoo e) {
+							
 						}
 						break;	
 					
@@ -457,8 +458,10 @@ public class Teste {
 						//exception
 				}
 			}
-		//} while (true); <----------------------
-			
-		} 	
+		}
+		}catch(MesInexistente e) {
+			System.out.print("Esse mês não existe");
+		}
+		//} while (true); <---------------------- 	
 	}
 }
