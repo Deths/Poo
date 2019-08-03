@@ -64,6 +64,8 @@ public class Usuarios {
 			Cliente cliente = new Cliente(usuario,senha); //cria novo cliente
 			indiceCliente++;
 			this.clientes[indiceCliente] = cliente;//adiciona o novo cliente na memoria
+			setLogado(true);
+			setTipoDeUsuario("Cliente");
 		}
 	}
 
@@ -83,6 +85,8 @@ public class Usuarios {
 			Atendente atendente = new Atendente(usuario,senha);
 			indiceAtendente++;
 			this.atendentes[indiceAtendente] = atendente;
+			setLogado(true);
+			setTipoDeUsuario("Atendente");
 		}
 	}
 	
@@ -131,7 +135,7 @@ public class Usuarios {
 		System.out.println("Possuímos as viagens a seguir para o dia " +dia);
 		//parei aqui, vamos ver a agenda
 		Data dataEscolhida = agenda.datas[dia-1];
-		dataEscolhida.imprimeVoos(); // fazer metodo
+		dataEscolhida.imprimeVoos();
 		System.out.println("Digite o código da viagem escolhida: ");
 		int codigo = input.nextInt();
 		int	codigoDoVoo = dataEscolhida.buscaVoo(codigo);

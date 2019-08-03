@@ -15,7 +15,7 @@ public class Agenda {
       } else if(mes.equals("Fevereiro")) {
         datas = new Data[28];
       } else {
-        throw new MesInexistente();
+        throw new MesInexistente(mes);
       }
   }
     

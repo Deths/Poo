@@ -399,50 +399,50 @@ public class Teste {
 					case 2:
 						System.out.println("Você deseja comprar um voo em qual mês?");
 						mesSelecionado = input.nextLine();
+						
 						System.out.println("Em qual dia?");
 						diaSelecionado =  input.nextInt();
 						diaSelecionado--;
 
 						switch(mesSelecionado) {
 						case "Janeiro":
-							usuarios.comprarVoo(janeiro);
+							usuarios.comprarVoo(janeiro, diaSelecionado);
 							break;
 						case "Fevereiro":
-							usuarios.comprarVoo(fevereiro);
+							usuarios.comprarVoo(fevereiro, diaSelecionado);
 							break;
 						case "Março":
-							usuarios.comprarVoo(março);
+							usuarios.comprarVoo(março, diaSelecionado);
 							break;
 						case "Abril":
-							usuarios.comprarVoo(abril);
+							usuarios.comprarVoo(abril, diaSelecionado);
 							break;
 						case "Maio":
-							usuarios.comprarVoo(maio);
+							usuarios.comprarVoo(maio, diaSelecionado);
 							break;
 						case "Junho":
-							usuarios.comprarVoo(junho);
+							usuarios.comprarVoo(junho, diaSelecionado);
 							break;
 						case "Julho":
-							usuarios.comprarVoo(julho);
+							usuarios.comprarVoo(julho, diaSelecionado);
 							break;
 						case "Agosto":
-							usuarios.comprarVoo(agosto);
+							usuarios.comprarVoo(agosto, diaSelecionado);
 							break;
 						case "Setembro":
-							usuarios.comprarVoo(setembro);
+							usuarios.comprarVoo(setembro, diaSelecionado);
 							break;
 						case "Outubro":
-							usuarios.comprarVoo(outubro);
+							usuarios.comprarVoo(outubro, diaSelecionado);
 							break;
 						case "Novembro":
-							usuarios.comprarVoo(novembro);
+							usuarios.comprarVoo(novembro, diaSelecionado);
 							break;
 						case "Dezembro":
-							usuarios.comprarVoo(dezembro);
+							usuarios.comprarVoo(dezembro, diaSelecionado);
 							break;
 						default:
-							//exception "mês não existe"
-							break;
+							throw new MesInexistente(mesSelecionado);
 						}
 						break;	
 						
