@@ -10,7 +10,7 @@ public class Data {
 	private Scanner input;
 	boolean status;
 	
-//Método Construtor
+//Metodo Construtor
 	public Data(int Data) {
 		this.data = Data;
 		this.numeroDeVoos = 0;
@@ -27,7 +27,7 @@ public class Data {
 		return this.status;
 	}
 	
-//Método que configura todo o voo e adiciona no vetor "listaDeVoos"
+//Metodo que configura todo o voo e adiciona no vetor "listaDeVoos"
 	public void adicionaVoo() {
 		//declarando variáveis de config do voo
 		String nome = null;
@@ -75,23 +75,24 @@ public class Data {
 		this.numeroDeVoos++;
 	}
 
-	public void removeVoo() {
+//Metodo que remove Voos
+	public void removeVoo() throws NaoExisteVoo {
 		int i;
 		int vooRemovido;
 		input = new Scanner(System.in);
 
-		System.out.println("Escolha o voo a ser cancelado");
+		System.out.println("Escolha o voo a ser cancelado (Codigo de voo)");
 		vooRemovido = input.nextInt();
 
 		for (i =  0; i < 4; i++) {
 			if(vooRemovido == listaDeVoos[i].getCodigoVoo()) {
-				listaDeVoos[i] = null;
+				listaDeVoos[i] = null; //anula o voo especificado
 				return;
 			}
 		}
 
 		if (i == 3) {
-			//Exception
+			throw new NaoExisteVoo();
 		}
 	}
 
