@@ -125,11 +125,16 @@ public class Usuarios {
 		setTipoDeUsuario("Nenhum");
 	}
 
+//Método de compra de vôos
 	public void comprarVoo(Agenda agenda) {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Insira a data da viagem: ");
+		System.out.println("Insira o mês da viagem (nº mês): ");
+		int mes = input.nextInt(); 
+	usar o mes tbm como critério
+		System.out.println("Insira o dia da viagem (nº dia): ");
 		int data = input.nextInt();
 		System.out.println("Possuímos as viagens a seguir para o dia " +data);
+		//parei aqui, vamos ver a agenda
 		Data dataEscolhida = agenda.datas[data-1];
 		dataEscolhida.imprimeVoosDoDia(); // fazer metodo
 		System.out.println("Digite o código da viagem escolhida: ");
@@ -158,9 +163,10 @@ public class Usuarios {
 		
 			}
 		}
-		
+	
+//Método imprime compras - de acordo com o id do usuário, definido na criação de nova conta, ele imprime: 
 		public void imprimeCompras() {
-			clientes[usuarioID].imprimeCompras();
+			clientes[usuarioID].imprimeCompras(); //fazer método na classe usuário
 		}
 		
 		public void cancelaCompra(Agenda agenda) {
