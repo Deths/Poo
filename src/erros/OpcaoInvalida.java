@@ -1,4 +1,4 @@
-package teste;
+package erros;
 
 public class OpcaoInvalida extends Exception {
 	public OpcaoInvalida() {

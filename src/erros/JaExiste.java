@@ -1,4 +1,4 @@
-package usuario;
+package erros;
 
 public class JaExiste extends Exception {
 	

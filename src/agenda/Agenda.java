@@ -5,7 +5,7 @@ public class Agenda {
   private String mes;
   public Data[] datas;
 
-  public Agenda(String mes) throws MesInexistente{
+  public Agenda(String mes){
     setMes(mes);
     if(mes.equals("Janeiro") || mes.equals("Março") || mes.equals("Maio") || mes.equals("Julho")
       || mes.equals("Agosto") || mes.equals("Outubro") || mes.equals("Dezembro")) {
@@ -14,9 +14,9 @@ public class Agenda {
         datas = new Data[30];
       } else if(mes.equals("Fevereiro")) {
         datas = new Data[28];
-      } else {
+      } /* else {
         throw new MesInexistente(mes);
-      }
+      } */
   }
     
   public void setMes(String mes) {

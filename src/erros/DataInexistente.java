@@ -1,4 +1,4 @@
-package agenda;
+package erros;
 
 public class DataInexistente extends Exception {
 	public DataInexistente() {

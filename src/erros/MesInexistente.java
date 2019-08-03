@@ -1,4 +1,4 @@
-package agenda;
+package erros;
 
 public class MesInexistente extends Exception {
 	public MesInexistente(String mesSelecionado) {

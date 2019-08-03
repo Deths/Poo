@@ -1,4 +1,4 @@
-package agenda;
+package erros;
 
 public class NaoExisteVoo extends Exception {
 	public NaoExisteVoo() {

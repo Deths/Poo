@@ -2,6 +2,8 @@ package agenda;
 
 import java.util.Scanner;
 
+import erros.NaoExisteVoo;
+
 public class Data {
 //Atributos
 	int data;
