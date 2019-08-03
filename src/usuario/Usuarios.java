@@ -47,25 +47,27 @@ public class Usuarios {
 		return tipoDeUsuario;
 	}
 	
-//Métodos de adição de novos Clientes na memória
+//Métodos de adição de novos Clientes na memória dessa classe
 	public void novoCliente(String usuario, String senha) {
 		boolean clienteJaExiste = false;
 		if(this.indiceCliente > -1) {
 			for(int i=0; i<indiceCliente+1; i++) {
-				if(this.clientes[i].getUsuario().equals(usuario)) {
+				if(this.clientes[i].getUsuario().equals(usuario)) {//verifica se usuario ja existe
 					clienteJaExiste = true;
-					//colocar uma exception
+					//colocar uma exception - se já existe, informar ao usuário
 					break;
 				}
 			}
 		}
+		//Primeira passagem e quando não existe existe cliente
 		if(!clienteJaExiste) {
-			Cliente cliente = new Cliente(usuario,senha);
+			Cliente cliente = new Cliente(usuario,senha); //cria novo cliente
 			indiceCliente++;
-			this.clientes[indiceCliente] = cliente;
+			this.clientes[indiceCliente] = cliente;//adiciona o novo cliente na memoria
 		}
 	}
 
+//Método de adição de novos atendentes, mesmo algoritmo do Clientes
 	public void novoAtendente(String usuario, String senha) {
 		boolean atendenteJaExiste = false;
 		if(this.indiceAtendente > -1) {
@@ -83,33 +85,40 @@ public class Usuarios {
 			this.atendentes[indiceAtendente] = atendente;
 		}
 	}
-
+	
+//Verifica usuario e senha e procura na memória do cliente 
 	public boolean loginCliente(String usuario, String senha) {
 		for(int i=0; i<clientes.length; i++) {
 			if(this.clientes[i].getUsuario().equals(usuario)) {
 				if(this.clientes[i].getSenha().equals(senha)) {
 					setUsuarioID(i);
 					setTipoDeUsuario("Cliente");
+					setLogado(true);
 					return true;
 				}
 			}
 		}
+		System.out.println("Não foi possível encontrar sua conta no sistema");
 		return false;
 	}
-
+	
+//Verifica usuario e senha e procura na memória do atendente
 	public boolean loginAtendente(String usuario, String senha) {
 		for(int i=0; i<atendentes.length; i++) {
 			if(this.atendentes[i].getUsuario().equals(usuario)) {
 				if(this.atendentes[i].getSenha().equals(senha)) {
 					setUsuarioID(i);
 					setTipoDeUsuario("Atendente");
+					setLogado(true);
 					return true;
 				}
 			}
 		}
+		System.out.println("Não foi possível encontrar sua conta no sistema");
 		return false;
 	}
 
+//Reseta configurações
 	public void logout() {
 		setLogado(false);
 		setUsuarioID(-1);
