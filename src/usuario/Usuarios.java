@@ -161,7 +161,7 @@ public class Usuarios {
 	
 //Método imprime compras - de acordo com o id do usuário, definido na criação de nova conta, ele imprime: 
 		public void imprimeCompras() {
-			clientes[usuarioID].imprimeCompras(); //fazer método na classe usuário
+			clientes[usuarioID].imprimeCompras(); //!!fazer método na classe usuário
 		}
 		
 		public void cancelaCompra(Agenda agenda) {
