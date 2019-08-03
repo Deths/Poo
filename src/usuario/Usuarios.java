@@ -115,10 +115,10 @@ public class Usuarios {
 		setTipoDeUsuario("Nenhum");
 	}
 
-	public void comprarVoo(Agenda agenda) {
+	public void comprarVoo(Agenda agenda, int data) {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Insira a data da viagem: ");
-		int data = input.nextInt();
+		//System.out.println("Insira a data da viagem: ");
+		//int data = input.nextInt();
 		System.out.println("Possuímos as viagens a seguir para o dia " +data);
 		Data dataEscolhida = agenda.datas[data-1];
 		dataEscolhida.imprimeVoosDoDia();

@@ -13,7 +13,7 @@ public class Teste {
 		int tipoDeUsuario;
 		String mesSelecionado;
 		int diaSelecionado; 
-		boolean loop;
+		boolean loop = true;
 		
 		Usuarios usuarios = new Usuarios();
 		
@@ -34,6 +34,7 @@ public class Teste {
 		
 		do {
 			/*------------------------------------------------------------------------------------------*/
+			loop = true;
 			System.out.println("-------------------------------------------------------");
 			System.out.println("                     Bem-vindo");
 			System.out.println("-------------------------------------------------------");
@@ -466,40 +467,40 @@ public class Teste {
 			
 									switch(mesSelecionado) {
 									case "Janeiro":
-										usuarios.comprarVoo(janeiro);
+										usuarios.comprarVoo(janeiro, diaSelecionado);
 										break;
 									case "Fevereiro":
-										usuarios.comprarVoo(fevereiro);
+										usuarios.comprarVoo(fevereiro, diaSelecionado);
 										break;
 									case "Março":
-										usuarios.comprarVoo(março);
+										usuarios.comprarVoo(março, diaSelecionado);
 										break;
 									case "Abril":
-										usuarios.comprarVoo(abril);
+										usuarios.comprarVoo(abril, diaSelecionado);
 										break;
 									case "Maio":
-										usuarios.comprarVoo(maio);
+										usuarios.comprarVoo(maio, diaSelecionado);
 										break;
 									case "Junho":
-										usuarios.comprarVoo(junho);
+										usuarios.comprarVoo(junho, diaSelecionado);
 										break;
 									case "Julho":
-										usuarios.comprarVoo(julho);
+										usuarios.comprarVoo(julho, diaSelecionado);
 										break;
 									case "Agosto":
-										usuarios.comprarVoo(agosto);
+										usuarios.comprarVoo(agosto, diaSelecionado);
 										break;
 									case "Setembro":
-										usuarios.comprarVoo(setembro);
+										usuarios.comprarVoo(setembro, diaSelecionado);
 										break;
 									case "Outubro":
-										usuarios.comprarVoo(outubro);
+										usuarios.comprarVoo(outubro, diaSelecionado);
 										break;
 									case "Novembro":
-										usuarios.comprarVoo(novembro);
+										usuarios.comprarVoo(novembro, diaSelecionado);
 										break;
 									case "Dezembro":
-										usuarios.comprarVoo(dezembro);
+										usuarios.comprarVoo(dezembro, diaSelecionado);
 										break;
 									default:
 										//throw new OpcaoInvalida();
@@ -566,7 +567,7 @@ public class Teste {
 					} catch (Exception e) {  //<----------------------
 						e.printStackTrace();
 					}
-				} while (loop = true); //FIM DO LOOP "MENU LOGADO"
+				} while (loop); //FIM DO LOOP "MENU LOGADO"
 			} 	
 			// else { para caso n esteja logado (?) ERRO
 		}while (true);
