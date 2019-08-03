@@ -4,6 +4,7 @@ import agenda.*;
 import java.util.Scanner;
 
 public class Usuarios {
+//Atributos
 	private Usuario[] clientes = new Usuario[1000];
 	private Usuario[] atendentes = new Usuario[1000];
 	private int indiceCliente;
@@ -12,11 +13,13 @@ public class Usuarios {
 	private static int usuarioID;
 	private static String tipoDeUsuario;
 
+//Construtor
 	public Usuarios() {
 		this.indiceCliente = -1;
 		this.indiceAtendente = -1;
 	}
-
+	
+//Getters and Setters
 	public void setLogado(boolean logado) {
 		if(logado) {
 			Usuarios.logado = 1;
@@ -24,27 +27,27 @@ public class Usuarios {
 			Usuarios.logado = 0;
 		}
 	}
-
 	public int getLogado() {
 		return logado;
 	}
+	
 
 	public void setUsuarioID(int id) {
 		Usuarios.usuarioID = id;
 	}
-
 	public int getUsuarioID() {
 		return usuarioID;
 	}
+	
 
 	public void setTipoDeUsuario(String usuario) {
 		Usuarios.tipoDeUsuario = usuario;
 	}
-
 	public String getTipoDeUsuario() {
 		return tipoDeUsuario;
 	}
-
+	
+//Métodos de adição de novos Clientes na memória
 	public void novoCliente(String usuario, String senha) {
 		boolean clienteJaExiste = false;
 		if(this.indiceCliente > -1) {
