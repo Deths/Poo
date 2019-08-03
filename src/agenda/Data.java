@@ -3,13 +3,14 @@ package agenda;
 import java.util.Scanner;
 
 public class Data {
-
+//Atributos
 	int data;
 	protected int numeroDeVoos;
 	public Voo[] listaDeVoos = new Voo[4];
 	private Scanner input;
 	boolean status;
 	
+//Método Construtor
 	public Data(int Data) {
 		this.data = Data;
 		this.numeroDeVoos = 0;
@@ -17,12 +18,18 @@ public class Data {
 		this.status =  true;
 	}
 	
+//Getters and Setters
 	public int getNumeroDeVoos() {
 		return numeroDeVoos;
 	}
-		
+	
+	public boolean getStatus() {
+		return this.status;
+	}
+	
+//Método que configura todo o voo e adiciona no vetor "listaDeVoos"
 	public void adicionaVoo() {
-
+		//declarando variáveis de config do voo
 		String nome = null;
 		String compania = null;
 		String destino = null;
@@ -34,13 +41,13 @@ public class Data {
 		float precoClasseEconomica = 0;
 		
 		input = new Scanner(System.in);
-
+		//Entrevista para compra de voo
 		System.out.println("Entre dados para o novo Voo");
 
 		System.out.println("Nome do Voo");
 		nome = input.nextLine();
 
-		System.out.println("Nome da compania");
+		System.out.println("Nome da companhia");
 		compania = input.nextLine();
 
 		System.out.println("Destino");
@@ -63,7 +70,7 @@ public class Data {
 		
 		System.out.println("Preço Classe Econômica");
 		precoClasseEconomica = input.nextFloat();
-
+		//!!Pode ter erros = numero de voos pode ser maior que 4 - não irá armazenar
 		listaDeVoos[numeroDeVoos] =  new Voo(nome, compania, destino, partida, horarioChegada, horarioSaida, codigoVoo, precoPrimeiraClasse, precoClasseEconomica);
 		this.numeroDeVoos++;
 	}
@@ -108,8 +115,6 @@ public class Data {
 		
 	}
 	
-	public boolean getStatus() {
-		return this.status;
-	}
+	
 	
 }
