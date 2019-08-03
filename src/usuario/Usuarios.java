@@ -3,8 +3,6 @@ import usuario.*;
 import agenda.*;
 import java.util.Scanner;
 
-import agenda.Agenda;
-
 public class Usuarios {
 	private Usuario[] clientes = new Usuario[1000];
 	private Usuario[] atendentes = new Usuario[1000];
@@ -120,7 +118,7 @@ public class Usuarios {
 		System.out.println("Insira a data da viagem: ");
 		int data = input.nextInt();
 		System.out.println("Possuímos as viagens a seguir para o dia " +data);
-		Data dataEscolhida = agenda.datas[data-1]; //tetse
+		Data dataEscolhida = agenda.datas[data-1];
 		dataEscolhida.imprimeVoosDoDia(); // fazer metodo
 		System.out.println("Digite o código da viagem escolhida: ");
 		int codigo = input.nextInt();
@@ -144,12 +142,34 @@ public class Usuarios {
 				vooEscolhido.adicionaPoltrona(linha, coluna, classe, getUsuarioID());
 			}
 			System.out.println("O valor total da compra é: " +vooEscolhido.calculaValorTotal(passagens, passageirosMenoresDeIdade, classe));
-			System.out.println("Para confirmar a compra, digite 1");
-			int compra = input.nextInt();
-			if(compra==1) {
-				System.out.println("Compra efetuada com sucesso!");
-			} else {
-				System.out.println("Compra cancelada");
+			System.out.println("Compra efetuada com sucesso!");
+		
 			}
+		}
+		
+		public void imprimeCompras() {
+			clientes[usuarioID].imprimeCompras();
+		}
+		
+		public void cancelaCompra(Agenda agenda) {
+			Scanner input = new Scanner(System.in);
+			imprimeCompras();
+			System.out.println("Digite o código da compra a ser cancelada: ");
+			int codigoCompra = input.nextInt();
+			System.out.println("Confirme a data: ");
+			int data = input.nextInt();
+			System.out.println("Confirme o código do voo: ");
+			int codigoVoo = input.nextInt();
+			System.out.println("Confirme a classe (1-Primeira/2-Economica)");
+			int classe = input.nextInt();
+			System.out.println("Confirme a linha da poltrona: ");
+			int linha = input.nextInt();
+			System.out.println("Confirme a coluna da poltrona: ");
+			int coluna = input.nextInt();
+			Usuario clienteAtual = clientes[usuarioID];
+			Data dataDoVoo = agenda.datas[data];
+			int vooID = dataDoVoo.buscaVoo(codigoVoo);
+			dataDoVoo.listaDeVoos[vooID].removeDaPoltrona(linha, coluna, classe);
+			clienteAtual.apagaCompra(codigoCompra);
 		}
 	}

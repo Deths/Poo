@@ -1,5 +1,8 @@
 package usuario;
 
+import agenda.Poltrona;
+import agenda.Voo;
+
 public class Usuario {
 	private String usuario, senha;
 	
@@ -22,5 +25,14 @@ public class Usuario {
 	
 	public String getSenha() {
 		return senha;
+	}
+	
+	public void adicionaCompras(Voo voo, Poltrona poltrona) {
+	}
+
+	public void imprimeCompras() {
+	}
+
+	public void apagaCompra(int codigo) {
 	}
 }

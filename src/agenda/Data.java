@@ -16,6 +16,10 @@ public class Data {
 		this.listaDeVoos = null;
 		this.status =  true;
 	}
+	
+	public int getNumeroDeVoos() {
+		return numeroDeVoos;
+	}
 		
 	public void adicionaVoo() {
 
@@ -26,7 +30,9 @@ public class Data {
 		String horarioChegada = null;
 		String horarioSaida = null;
 		int codigoVoo = -1;
-
+		float precoPrimeiraClasse = 0;
+		float precoClasseEconomica = 0;
+		
 		input = new Scanner(System.in);
 
 		System.out.println("Entre dados para o novo Voo");
@@ -51,8 +57,14 @@ public class Data {
 
 		System.out.println("Código do Voo");
 		codigoVoo = input.nextInt();
+		
+		System.out.println("Preço Primeira Classe");
+		precoPrimeiraClasse = input.nextFloat();
+		
+		System.out.println("Preço Classe Econômica");
+		precoClasseEconomica = input.nextFloat();
 
-		listaDeVoos[numeroDeVoos] =  new Voo(nome, compania, destino, partida, horarioChegada, horarioSaida, codigoVoo);
+		listaDeVoos[numeroDeVoos] =  new Voo(nome, compania, destino, partida, horarioChegada, horarioSaida, codigoVoo, precoPrimeiraClasse, precoClasseEconomica);
 		this.numeroDeVoos++;
 	}
 
@@ -85,6 +97,13 @@ public class Data {
 		return -1;
 	}
 
+	public void imprimeVoosDoDia() {
+		for(int i=0; i<4; i++) {
+			Voo vooAtual = listaDeVoos[i];
+			System.out.println("Voo " +vooAtual.toString());
+		}
+	}
+	
 	public void imprimeData() {
 		
 	}
