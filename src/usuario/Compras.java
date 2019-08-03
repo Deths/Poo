@@ -28,6 +28,16 @@ public class Compras {
 		}
 	}
 	
+	public void imprimeCompras(String mes) {
+		for(int i=0; i<indice; i++) {
+			if(compra[i].voo.getMesVoo().equals(mes)) {
+				System.out.println("Código da compra: " +i);
+				System.out.println(compra[i].getVoo().toString());
+				System.out.println("Poltrona -> linha:" +compra[i].getPoltrona().getLinha()+ "coluna: " +compra[i].getPoltrona().getColuna());
+			}
+		}
+	}
+	
 	public void apagaCompra(int codigo) {
 		compra[codigo] = null;
 		for(int i=codigo; i<indice-1; i++) {

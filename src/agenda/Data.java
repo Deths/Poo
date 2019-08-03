@@ -2,36 +2,21 @@ package agenda;
 
 import java.util.Scanner;
 
-import erros.NaoExisteVoo;
-
 public class Data {
-//Atributos
 	int data;
 	protected int numeroDeVoos;
 	public Voo[] listaDeVoos = new Voo[4];
 	private Scanner input;
 	boolean status;
 	
-//Metodo Construtor
 	public Data(int Data) {
 		this.data = Data;
 		this.numeroDeVoos = 0;
 		this.listaDeVoos = null;
 		this.status =  true;
 	}
-	
-//Getters and Setters
-	public int getNumeroDeVoos() {
-		return numeroDeVoos;
-	}
-	
-	public boolean getStatus() {
-		return this.status;
-	}
-	
-//Metodo que configura todo o voo e adiciona no vetor "listaDeVoos"
-	public void adicionaVoo() {
-		//declarando variáveis de config do voo
+		
+	public void adicionaVoo(String mes) {
 		String nome = null;
 		String compania = null;
 		String destino = null;
@@ -39,17 +24,15 @@ public class Data {
 		String horarioChegada = null;
 		String horarioSaida = null;
 		int codigoVoo = -1;
-		float precoPrimeiraClasse = 0;
-		float precoClasseEconomica = 0;
 		
 		input = new Scanner(System.in);
-		//Entrevista para compra de voo
+
 		System.out.println("Entre dados para o novo Voo");
 
 		System.out.println("Nome do Voo");
 		nome = input.nextLine();
 
-		System.out.println("Nome da companhia");
+		System.out.println("Nome da compania");
 		compania = input.nextLine();
 
 		System.out.println("Destino");
@@ -66,39 +49,37 @@ public class Data {
 
 		System.out.println("Código do Voo");
 		codigoVoo = input.nextInt();
-		
-		System.out.println("Preço Primeira Classe");
-		precoPrimeiraClasse = input.nextFloat();
-		
-		System.out.println("Preço Classe Econômica");
-		precoClasseEconomica = input.nextFloat();
-		//!!Pode ter erros = numero de voos pode ser maior que 4 - não irá armazenar
-		listaDeVoos[numeroDeVoos] =  new Voo(nome, compania, destino, partida, horarioChegada, horarioSaida, codigoVoo, precoPrimeiraClasse, precoClasseEconomica);
+
+		listaDeVoos[numeroDeVoos] =  new Voo(nome, compania, destino, partida, horarioChegada, horarioSaida, codigoVoo, mes);
 		this.numeroDeVoos++;
 	}
 
-//Metodo que remove Voos
-	public void removeVoo() throws NaoExisteVoo {
-		int i;
+	public void removeVoo() { 
+		
 		int vooRemovido;
 		input = new Scanner(System.in);
 
-		System.out.println("Escolha o voo a ser cancelado (Codigo de voo)");
+		System.out.println("Escolha o voo a ser removido");
 		vooRemovido = input.nextInt();
 
-		for (i =  0; i < 4; i++) {
+		for (int i = 0; i < 4; i++) {
 			if(vooRemovido == listaDeVoos[i].getCodigoVoo()) {
-				listaDeVoos[i] = null; //anula o voo especificado
-				return;
+				listaDeVoos[i] = null;
+				
+				if (i == 3) {
+					return;
+				} else {
+					for (int j = i; i < 3; i++) {
+						listaDeVoos[j] = listaDeVoos[j+1];
+					}
+					return;
+				}	
 			}
 		}
-
-		if (i == 3) {
-			throw new NaoExisteVoo();//Caso não exista voo especificado
-		}
+		
+		//ERRO
 	}
 
-//Metodo que procura por voos com seu codigo - retorna a posição no vetor listaDeVoos ou -1 se não existe
 	public int buscaVoo(int codigoVoo) {
 		for(int i=0; i < 4; i++) {
 			if(listaDeVoos[i].getCodigoVoo() == codigoVoo) {
@@ -108,25 +89,22 @@ public class Data {
 		return -1;
 	}
 
-//Metodo que imprime os voos do vetor listaDeVoos
-	public void imprimeVoosDoMes(Agenda agenda) {
-		int i;
-		int passou=0;
-		for(i=0; i<4; i++) {
-			if(listaDeVoos[i].getAgenda().equals(agenda)) {
-				System.out.println("Voo " +listaDeVoos[i].toString());
-				passou++;
-			}			
+	public void imprimeVoosDoDia() {
+		for(int i=0; i<4; i++) {
+			if (listaDeVoos[i] != null) {
+				Voo vooAtual = listaDeVoos[i];
+				System.out.println("Voo " +vooAtual.toString());
+			}
 		}
-		if(passou==0) {
-			System.out.println("Não existe voos para esse mes");
-		}
+	}
+	
+	public boolean getStatus() {
+		return this.status;
+	}
+	
+	public int getNumeroDeVoos() {
+		return numeroDeVoos;
 	}
 
-	public void imprimeData() {
-		
-	}
-	
-	
 	
 }

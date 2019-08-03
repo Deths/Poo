@@ -4,7 +4,6 @@ import agenda.*;
 import java.util.Scanner;
 
 public class Usuarios {
-//Atributos
 	private Usuario[] clientes = new Usuario[1000];
 	private Usuario[] atendentes = new Usuario[1000];
 	private int indiceCliente;
@@ -13,13 +12,11 @@ public class Usuarios {
 	private static int usuarioID;
 	private static String tipoDeUsuario;
 
-//Construtor
 	public Usuarios() {
 		this.indiceCliente = -1;
 		this.indiceAtendente = -1;
 	}
-	
-//Getters and Setters
+
 	public void setLogado(boolean logado) {
 		if(logado) {
 			Usuarios.logado = 1;
@@ -27,49 +24,45 @@ public class Usuarios {
 			Usuarios.logado = 0;
 		}
 	}
+
 	public int getLogado() {
 		return logado;
 	}
-	
 
 	public void setUsuarioID(int id) {
 		Usuarios.usuarioID = id;
 	}
+
 	public int getUsuarioID() {
 		return usuarioID;
 	}
-	
 
 	public void setTipoDeUsuario(String usuario) {
 		Usuarios.tipoDeUsuario = usuario;
 	}
+
 	public String getTipoDeUsuario() {
 		return tipoDeUsuario;
 	}
-	
-//Métodos de adição de novos Clientes na memória dessa classe
+
 	public void novoCliente(String usuario, String senha) {
 		boolean clienteJaExiste = false;
 		if(this.indiceCliente > -1) {
 			for(int i=0; i<indiceCliente+1; i++) {
-				if(this.clientes[i].getUsuario().equals(usuario)) {//verifica se usuario ja existe
+				if(this.clientes[i].getUsuario().equals(usuario)) {
 					clienteJaExiste = true;
-					//colocar uma exception - se já existe, informar ao usuário
+					//colocar uma exception
 					break;
 				}
 			}
 		}
-		//Primeira passagem e quando não existe existe cliente
 		if(!clienteJaExiste) {
-			Cliente cliente = new Cliente(usuario,senha); //cria novo cliente
+			Cliente cliente = new Cliente(usuario,senha);
 			indiceCliente++;
-			this.clientes[indiceCliente] = cliente;//adiciona o novo cliente na memoria
-			setLogado(true);
-			setTipoDeUsuario("Cliente");
+			this.clientes[indiceCliente] = cliente;
 		}
 	}
 
-//Método de adição de novos atendentes, mesmo algoritmo do Clientes
 	public void novoAtendente(String usuario, String senha) {
 		boolean atendenteJaExiste = false;
 		if(this.indiceAtendente > -1) {
@@ -85,12 +78,9 @@ public class Usuarios {
 			Atendente atendente = new Atendente(usuario,senha);
 			indiceAtendente++;
 			this.atendentes[indiceAtendente] = atendente;
-			setLogado(true);
-			setTipoDeUsuario("Atendente");
 		}
 	}
-	
-//Verifica usuario e senha e procura na memória do cliente 
+
 	public boolean loginCliente(String usuario, String senha) {
 		for(int i=0; i<clientes.length; i++) {
 			if(this.clientes[i].getUsuario().equals(usuario)) {
@@ -102,11 +92,9 @@ public class Usuarios {
 				}
 			}
 		}
-		System.out.println("Não foi possível encontrar sua conta no sistema");
 		return false;
 	}
-	
-//Verifica usuario e senha e procura na memória do atendente
+
 	public boolean loginAtendente(String usuario, String senha) {
 		for(int i=0; i<atendentes.length; i++) {
 			if(this.atendentes[i].getUsuario().equals(usuario)) {
@@ -118,24 +106,22 @@ public class Usuarios {
 				}
 			}
 		}
-		System.out.println("Não foi possível encontrar sua conta no sistema");
 		return false;
 	}
 
-//Reseta configurações
 	public void logout() {
 		setLogado(false);
 		setUsuarioID(-1);
 		setTipoDeUsuario("Nenhum");
 	}
 
-//Método de compra de vôos
-	public void comprarVoo(Agenda agenda, int dia) {
+	public void comprarVoo(Agenda agenda) {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Possuímos as viagens a seguir para o dia " +dia);
-		//parei aqui, vamos ver a agenda
-		Data dataEscolhida = agenda.datas[dia-1];
-		dataEscolhida.imprimeVoos();
+		System.out.println("Insira a data da viagem: ");
+		int data = input.nextInt();
+		System.out.println("Possuímos as viagens a seguir para o dia " +data);
+		Data dataEscolhida = agenda.datas[data-1];
+		dataEscolhida.imprimeVoosDoDia();
 		System.out.println("Digite o código da viagem escolhida: ");
 		int codigo = input.nextInt();
 		int	codigoDoVoo = dataEscolhida.buscaVoo(codigo);
@@ -156,37 +142,52 @@ public class Usuarios {
 				System.out.println("Digite a coluna: ");
 				int coluna = input.nextInt();
 				vooEscolhido.adicionaPoltrona(linha, coluna, classe, getUsuarioID());
+				clientes[usuarioID].adicionaCompras(vooEscolhido, vooEscolhido.buscaPoltrona(linha,coluna,classe));
 			}
 			System.out.println("O valor total da compra é: " +vooEscolhido.calculaValorTotal(passagens, passageirosMenoresDeIdade, classe));
 			System.out.println("Compra efetuada com sucesso!");
-		
-			}
-		}
-	
-//Método imprime compras - de acordo com o id do usuário, definido na criação de nova conta, ele imprime: 
-		public void imprimeCompras() {
-			clientes[usuarioID].imprimeCompras(); //!!fazer método na classe usuário
-		}
-		
-		public void cancelaCompra(Agenda agenda) {
-			Scanner input = new Scanner(System.in);
-			imprimeCompras();
-			System.out.println("Digite o código da compra a ser cancelada: ");
-			int codigoCompra = input.nextInt();
-			System.out.println("Confirme a data: ");
-			int data = input.nextInt();
-			System.out.println("Confirme o código do voo: ");
-			int codigoVoo = input.nextInt();
-			System.out.println("Confirme a classe (1-Primeira/2-Economica)");
-			int classe = input.nextInt();
-			System.out.println("Confirme a linha da poltrona: ");
-			int linha = input.nextInt();
-			System.out.println("Confirme a coluna da poltrona: ");
-			int coluna = input.nextInt();
-			Usuario clienteAtual = clientes[usuarioID];
-			Data dataDoVoo = agenda.datas[data];
-			int vooID = dataDoVoo.buscaVoo(codigoVoo);
-			dataDoVoo.listaDeVoos[vooID].removeDaPoltrona(linha, coluna, classe);
-			clienteAtual.apagaCompra(codigoCompra);
 		}
 	}
+	
+	public void imprimeCompras() {
+		clientes[usuarioID].imprimeCompras();
+	}
+	
+	public void cancelaCompra(Agenda agenda) {
+		int codigoCompra;
+		int data;
+		int codigoVoo;
+		int classe;
+		int linha;
+		int coluna;
+		int vooID;
+		
+		Scanner input = new Scanner(System.in);
+		
+		imprimeCompras();
+		System.out.println("Digite o código da compra a ser cancelada: ");
+		codigoCompra = input.nextInt();
+		
+		System.out.println("Confirme a data: ");
+		data = input.nextInt();
+		
+		System.out.println("Confirme o código do voo: ");
+		codigoVoo = input.nextInt();
+		
+		System.out.println("Confirme a classe (1-Primeira/2-Economica)");
+		classe = input.nextInt();
+		
+		System.out.println("Confirme a linha da poltrona: ");
+		linha = input.nextInt();
+		
+		System.out.println("Confirme a coluna da poltrona: ");
+		coluna = input.nextInt();
+		
+		Usuario clienteAtual = clientes[usuarioID];
+		Data dataDoVoo = agenda.datas[data];
+		vooID = dataDoVoo.buscaVoo(codigoVoo);
+		dataDoVoo.listaDeVoos[vooID].removeDaPoltrona(linha, coluna, classe);
+		clienteAtual.apagaCompra(codigoCompra);
+	}
+}
+

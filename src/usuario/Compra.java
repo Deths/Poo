@@ -4,7 +4,7 @@ import agenda.Voo;
 import agenda.Poltrona;
 
 public class Compra {
-	private Voo voo;
+	protected Voo voo;
 	private Poltrona poltrona;
 	public Compra(Voo voo, Poltrona poltrona) {
 		setVoo(voo);

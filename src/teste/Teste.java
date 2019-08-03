@@ -9,7 +9,8 @@ import erros.*;
 public class Teste {
 
 	public static void main(String[] args) {
-		int decisao;
+		int decisao = 0;
+		boolean loop = true;
 		int tipoDeUsuario;
 		String mesSelecionado;
 		int diaSelecionado; 
@@ -30,7 +31,7 @@ public class Teste {
 		Agenda dezembro = new Agenda("Dezembro");
 		
 		Scanner input = new Scanner(System.in);
-		
+		do {
 		/*------------------------------------------------------------------------------------------*/
 		System.out.println("Bem-vindo");
 		do {
@@ -45,7 +46,7 @@ public class Teste {
 				System.out.println("Você é um cliente ou um atendente? (1/2)");
 				tipoDeUsuario = input.nextInt();
 				input.nextLine();
-				if(decisao != 1 && decisao != 2) {
+				if(tipoDeUsuario != 1 && tipoDeUsuario != 2) {
 					throw new OpcaoInvalida();
 				}
 				
@@ -58,20 +59,16 @@ public class Teste {
 				if(decisao == 1) {
 					if(tipoDeUsuario == 1) {
 						usuarios.novoCliente(usuario, senha);
-						break;
 					} else if(tipoDeUsuario == 2) {
 						usuarios.novoAtendente(usuario, senha);
-						break;
 					} else {
 						throw new OpcaoInvalida();
 					}
 				} else if(decisao == 2) {
 					if(tipoDeUsuario == 1) {
 						usuarios.loginCliente(usuario, senha);
-						break;
 					} else if(tipoDeUsuario == 2) {
 						usuarios.loginAtendente(usuario, senha);
-						break;
 					} else {
 						throw new OpcaoInvalida();
 					}
@@ -81,7 +78,7 @@ public class Teste {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} while(true);
+		} while(decisao != 2);
 		/*------------------------------------------------------------------------------------------*/
 		
 		if(usuarios.getLogado() == 1) {
@@ -162,98 +159,98 @@ public class Teste {
 								switch(mesSelecionado) {
 									case "Janeiro":
 										if (janeiro.datas[diaSelecionado].getStatus()) {
-											janeiro.datas[diaSelecionado].adicionaVoo();
+											janeiro.datas[diaSelecionado].adicionaVoo("Janeiro");
 										} else {
 											janeiro.datas[diaSelecionado] =  new Data(diaSelecionado);
-											janeiro.datas[diaSelecionado].adicionaVoo();
+											janeiro.datas[diaSelecionado].adicionaVoo("Janeiro");
 										}
 										break;
 									case "Fevereiro":
 										if (fevereiro.datas[diaSelecionado].getStatus()) {
-											fevereiro.datas[diaSelecionado].adicionaVoo();
+											fevereiro.datas[diaSelecionado].adicionaVoo("Fevereiro");
 										} else {
 											fevereiro.datas[diaSelecionado] =  new Data(diaSelecionado);
-											fevereiro.datas[diaSelecionado].adicionaVoo();
+											fevereiro.datas[diaSelecionado].adicionaVoo("Fevereiro");
 										}
 										break;
 									case "Março":
 										if (março.datas[diaSelecionado].getStatus()) {
-											março.datas[diaSelecionado].adicionaVoo();
+											março.datas[diaSelecionado].adicionaVoo("Março");
 										} else {
 											março.datas[diaSelecionado] =  new Data(diaSelecionado);
-											março.datas[diaSelecionado].adicionaVoo();
+											março.datas[diaSelecionado].adicionaVoo("Março");
 										}
 										break;
 									case "Abril":
 										if (abril.datas[diaSelecionado].getStatus()) {
-											abril.datas[diaSelecionado].adicionaVoo();
+											abril.datas[diaSelecionado].adicionaVoo("Abril");
 										} else {
 											abril.datas[diaSelecionado] =  new Data(diaSelecionado);
-											abril.datas[diaSelecionado].adicionaVoo();
+											abril.datas[diaSelecionado].adicionaVoo("Abril");
 										}
 										break;
 									case "Maio":
 										if (maio.datas[diaSelecionado].getStatus()) {
-											maio.datas[diaSelecionado].adicionaVoo();
+											maio.datas[diaSelecionado].adicionaVoo("Maio");
 										} else {
 											maio.datas[diaSelecionado] =  new Data(diaSelecionado);
-											maio.datas[diaSelecionado].adicionaVoo();
+											maio.datas[diaSelecionado].adicionaVoo("Maio");
 										}
 										break;
 									case "Junho":
 										if (junho.datas[diaSelecionado].getStatus()) {
-											junho.datas[diaSelecionado].adicionaVoo();
+											junho.datas[diaSelecionado].adicionaVoo("Junho");
 										} else {
 											junho.datas[diaSelecionado] =  new Data(diaSelecionado);
-											junho.datas[diaSelecionado].adicionaVoo();
+											junho.datas[diaSelecionado].adicionaVoo("Junho");
 										}
 										break;
 									case "Julho":
 										if (julho.datas[diaSelecionado].getStatus()) {
-											julho.datas[diaSelecionado].adicionaVoo();
+											julho.datas[diaSelecionado].adicionaVoo("Julho");
 										} else {
 											julho.datas[diaSelecionado] =  new Data(diaSelecionado);
-											julho.datas[diaSelecionado].adicionaVoo();
+											julho.datas[diaSelecionado].adicionaVoo("Julho");
 										}
 										break;
 									case "Agosto":
 										if (agosto.datas[diaSelecionado].getStatus()) {
-											agosto.datas[diaSelecionado].adicionaVoo();
+											agosto.datas[diaSelecionado].adicionaVoo("Agosto");
 										} else {
 											agosto.datas[diaSelecionado] =  new Data(diaSelecionado);
-											agosto.datas[diaSelecionado].adicionaVoo();
+											agosto.datas[diaSelecionado].adicionaVoo("Agosto");
 										}
 										break;
 									case "Setembro":
 										if (setembro.datas[diaSelecionado].getStatus()) {
-											setembro.datas[diaSelecionado].adicionaVoo();
+											setembro.datas[diaSelecionado].adicionaVoo("Setembro");
 										} else {
 											setembro.datas[diaSelecionado] =  new Data(diaSelecionado);
-											setembro.datas[diaSelecionado].adicionaVoo();
+											setembro.datas[diaSelecionado].adicionaVoo("Setembro");
 										}
 										break;
 									case "Outubro":
 										if (outubro.datas[diaSelecionado].getStatus()) {
-											outubro.datas[diaSelecionado].adicionaVoo();
+											outubro.datas[diaSelecionado].adicionaVoo("Outubro");
 										} else {
 											outubro.datas[diaSelecionado] =  new Data(diaSelecionado);
-											outubro.datas[diaSelecionado].adicionaVoo();
+											outubro.datas[diaSelecionado].adicionaVoo("Outubro");
 										}
 										break;
 									case "Novembro":
 										if (novembro.datas[diaSelecionado].getStatus()) {
-											novembro.datas[diaSelecionado].adicionaVoo();
+											novembro.datas[diaSelecionado].adicionaVoo("Novembro");
 										} else {
 											novembro.datas[diaSelecionado] =  new Data(diaSelecionado);
-											novembro.datas[diaSelecionado].adicionaVoo();
+											novembro.datas[diaSelecionado].adicionaVoo("Novembro");
 										}
 										break;
 									case "Dezembro":
 										if (dezembro.datas[diaSelecionado].getStatus()) {
-											dezembro.datas[diaSelecionado].adicionaVoo();
+											dezembro.datas[diaSelecionado].adicionaVoo("Dezembro");
 										} else {
 											dezembro.datas[diaSelecionado] =  new Data(diaSelecionado);
-											dezembro.datas[diaSelecionado].adicionaVoo();
+											dezembro.datas[diaSelecionado].adicionaVoo("Dezembro");
 										}
 										break;
 									default:
@@ -365,6 +362,7 @@ public class Teste {
 							case 4:
 								System.out.println("Logout");
 								usuarios.logout();
+								loop = false;
 								break;
 						}
 					} else if(usuarios.getTipoDeUsuario().equals("Cliente")) {
@@ -436,43 +434,43 @@ public class Teste {
 		
 								switch(mesSelecionado) {
 								case "Janeiro":
-									usuarios.comprarVoo(janeiro, diaSelecionado);
+									usuarios.comprarVoo(janeiro);
 									break;
 								case "Fevereiro":
-									usuarios.comprarVoo(fevereiro, diaSelecionado);
+									usuarios.comprarVoo(fevereiro);
 									break;
 								case "Março":
-									usuarios.comprarVoo(março, diaSelecionado);
+									usuarios.comprarVoo(março);
 									break;
 								case "Abril":
-									usuarios.comprarVoo(abril, diaSelecionado);
+									usuarios.comprarVoo(abril);
 									break;
 								case "Maio":
-									usuarios.comprarVoo(maio, diaSelecionado);
+									usuarios.comprarVoo(maio);
 									break;
 								case "Junho":
-									usuarios.comprarVoo(junho, diaSelecionado);
+									usuarios.comprarVoo(junho);
 									break;
 								case "Julho":
-									usuarios.comprarVoo(julho, diaSelecionado);
+									usuarios.comprarVoo(julho);
 									break;
 								case "Agosto":
-									usuarios.comprarVoo(agosto, diaSelecionado);
+									usuarios.comprarVoo(agosto);
 									break;
 								case "Setembro":
-									usuarios.comprarVoo(setembro, diaSelecionado);
+									usuarios.comprarVoo(setembro);
 									break;
 								case "Outubro":
-									usuarios.comprarVoo(outubro, diaSelecionado);
+									usuarios.comprarVoo(outubro);
 									break;
 								case "Novembro":
-									usuarios.comprarVoo(novembro, diaSelecionado);
+									usuarios.comprarVoo(novembro);
 									break;
 								case "Dezembro":
-									usuarios.comprarVoo(dezembro, diaSelecionado);
+									usuarios.comprarVoo(dezembro);
 									break;
 								default:
-									throw new OpcaoInvalida();
+									//throw new OpcaoInvalida();
 								}
 								break;	
 								
@@ -522,12 +520,13 @@ public class Teste {
 									usuarios.cancelaCompra(dezembro);
 									break;
 								default:
-									throw new OpcaoInvalida();
+									//throw new OpcaoInvalida();
 								}
 								break;	
 							case 5:
 								System.out.println("Logout");
 								usuarios.logout();
+								loop = false;
 								break;
 							
 						}
@@ -535,8 +534,8 @@ public class Teste {
 				} catch (Exception e) {  //<----------------------
 					e.printStackTrace();
 				}
-			} while (true); //FIM DO LOOP "MENU LOGADO"
+			} while (loop); //FIM DO LOOP "MENU LOGADO"
 		} 	
-		// else { para caso n esteja logado (?) ERRO
+		}while(true);// else { para caso n esteja logado (?) ERRO
 	}
 }

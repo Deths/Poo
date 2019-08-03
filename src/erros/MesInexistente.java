@@ -1,7 +1,7 @@
 package erros;
 
 public class MesInexistente extends Exception {
-	public MesInexistente(String mesSelecionado) {
-		System.out.print("Não existe esse mes <" + mesSelecionado + " >");
+	public MesInexistente() {
+		System.out.print("Não existe esse mes");
 	}
 }

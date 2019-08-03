@@ -6,7 +6,7 @@ import agenda.*;
 
 
 public class Voo {
-
+	private String mes;
 	private String nome;
 	private String compania;
 	private String destino;
@@ -22,7 +22,7 @@ public class Voo {
 	Poltrona[][] Primeira = new Poltrona[4][4];
 	Poltrona[][] Economica = new Poltrona[4][4];
 
-	public Voo (String nome, String compania,String destino, String partida, String horarioChegada, String horarioSaida, int codigoVoo, float precoPrimeiraClasse, float precoClasseEconomica) {
+	public Voo (String nome, String compania,String destino, String partida, String horarioChegada, String horarioSaida, int codigoVoo, String mes) {
 
 		this.nome = nome;
 		this.compania =  compania;
@@ -32,45 +32,11 @@ public class Voo {
 		this.horarioSaida = horarioSaida;
 		this.poltronasVazias = 32; //Total de poltronas no avião =  32 para todos os aviões.
 		this.poltronasCheias = 0;
+		this.mes = mes;
 		setCodigoVoo(codigoVoo);
-		iniciaPoltronas();
-	}
-	
-	public float calculaValorTotal(int passagens, int menoresDeIdade, int classe) {
-		if(classe == 1) {
-			return (precoPrimeiraClasse*(passagens-menoresDeIdade));
-		} else {
-			return (precoClasseEconomica*(passagens-menoresDeIdade));
-		}
-	}
-	
-	public void iniciaPoltronas() {
-		for(int i=0; i<4; i++) {
-			for(int j=0; j<4; j++) {
-				Primeira[i][j] = new Poltrona(-1, i, j);
-			}
-		}
-		for(int i=0; i<4; i++) {
-			for(int j=0; j<4; j++) {
-				Economica[i][j] = new Poltrona(-1, i, j);
-			}
-		}
-	}
 
-	public void adicionaPoltrona (int linha, int coluna, int classe, int clienteID) {
-		if(classe == 1) {
-			if(Primeira[linha][coluna].getClienteID() < 0) {
-				Primeira[linha][coluna].ocupaPoltrona(clienteID);
-			} else {
-				//exception
-			}
-		} else if(classe == 2) {
-			if(Economica[linha][coluna].getClienteID() < 0) {
-				Economica[linha][coluna].ocupaPoltrona(clienteID);
-			} else {
-				//exception
-			}
-		}
+		this.Primeira = null;
+		this.Economica = null;
 	}
 	
 	//Comprar poltronas;
@@ -148,17 +114,28 @@ public class Voo {
 			//Erro
 		}
 
-		this.poltronasVazias =  this.poltronasVazias -  numeroDeCadeiras;
+		this.poltronasVazias =  this.poltronasVazias - numeroDeCadeiras;
 		this.poltronasCheias = this.poltronasCheias + numeroDeCadeiras;
 	}
-
-	public Poltrona[][] getPoltronas(String classe) {
-
-		if(classe.equals("Primera"))
-			return this.Primeira;
-		else
-			return this.Economica;
+	
+	public void adicionaPoltrona (int linha, int coluna, int classe, int clienteID) {
+		if(classe == 1) {
+			if(Primeira[linha][coluna].getClienteID() < 0) {
+				Primeira[linha][coluna].ocupaPoltrona(clienteID);
+			} else {
+				//exception
+			}
+		} else if(classe == 2) {
+			if(Economica[linha][coluna].getClienteID() < 0) {
+				Economica[linha][coluna].ocupaPoltrona(clienteID);
+			} else {
+				//exception
+			}
+		}
+		this.poltronasVazias--;
+		this.poltronasCheias++;
 	}
+	
 	
 	public void imprimePoltronas(int classe) {
 		System.out.println("x -> poltronas indisponíveis");
@@ -209,7 +186,15 @@ public class Voo {
 			Economica[linha][coluna].desocupaPoltrona();
 		}
 	}
-
+	
+	public float calculaValorTotal(int passagens, int menoresDeIdade, int classe) {
+		if(classe == 1) {
+			return (precoPrimeiraClasse*(passagens-menoresDeIdade));
+		} else {
+			return (precoClasseEconomica*(passagens-menoresDeIdade));
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return "Voo [compania=" + compania + ", destino=" + destino + ", horarioChegada=" + horarioChegada
@@ -254,6 +239,10 @@ public class Voo {
 	}
 
 	public int getCodigoVoo(){
-		return codigoVoo;
+		return this.codigoVoo;
+	}
+	
+	public String getMesVoo(){
+		return this.mes;
 	}
 }
