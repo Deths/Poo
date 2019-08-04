@@ -2,6 +2,8 @@ package agenda;
 
 import java.util.Scanner;
 
+import erros.OpcaoInvalida;
+
 public class Data {
 	int data;
 	protected int numeroDeVoos;
@@ -51,8 +53,16 @@ public class Data {
         horarioSaida =  input.nextLine();
 
         System.out.println("Código do Voo");
-        codigoVoo = input.nextInt();
-
+        try {
+        	if(input.hasNextInt())
+    			codigoVoo = input.nextInt();
+    		else{
+    			input.next();
+    			throw new OpcaoInvalida();
+    		}
+        } catch(Exception e) {
+        	e.printStackTrace();
+        }
         System.out.println("Preço Primeira Classe");
         precoPrimeiraClasse = input.nextFloat();
 
@@ -65,13 +75,28 @@ public class Data {
 
 	public void removeVoo() { 
 		int vooRemovido;
+		boolean bool = true;
 		input = new Scanner(System.in);
 		
 		imprimeVoosDoDia();
 		
 		System.out.println("Escolha o código do voo a ser removido");
-		vooRemovido = input.nextInt();
-		
+		vooRemovido = 0;
+		while(bool) {
+			try {
+				if(input.hasNextInt()) {
+	    			vooRemovido = input.nextInt();
+	        		bool = false;
+				} else {
+	    			input.next();
+	    			throw new OpcaoInvalida();
+	    		}
+	        	input.nextLine();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+        	
+		}
 		for (int i = 0; i < 4; i++) {
 			if(vooRemovido == listaDeVoos[i].getCodigoVoo()) {
 				listaDeVoos[i] = null;
@@ -79,15 +104,16 @@ public class Data {
 					listaDeVoos[j]=listaDeVoos[j+1];			
 				}
 				listaDeVoos[3] = null;
-				return;
+				break;
 			}
 		}
+		numeroDeVoos--;
+		return;
 	}
 
 	public int buscaVoo(int codigoVoo) {
 		for(int i=0; i < 4; i++) {
 			if(listaDeVoos[i].getCodigoVoo() == codigoVoo) {
-				System.out.println(i);
 				return i;
 			}
 		}

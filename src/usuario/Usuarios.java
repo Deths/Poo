@@ -1,6 +1,9 @@
 package usuario;
 import usuario.*;
 import agenda.*;
+import erros.JaExiste;
+import erros.OpcaoInvalida;
+
 import java.util.Scanner;
 
 public class Usuarios {
@@ -51,8 +54,11 @@ public class Usuarios {
 			for(int i=0; i<indiceCliente+1; i++) {
 				if(this.clientes[i].getUsuario().equals(usuario)) {
 					clienteJaExiste = true;
-					//colocar uma exception
-					break;
+					try {
+						throw new JaExiste(usuario);
+					} catch (JaExiste e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -69,8 +75,11 @@ public class Usuarios {
 			for(int i=0; i<indiceAtendente+1; i++) {
 				if(this.atendentes[i].getUsuario().equals(usuario)) {
 					atendenteJaExiste = true;
-					//colocar uma exception
-					break;
+					try {
+						throw new JaExiste(usuario);
+					} catch (JaExiste e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -116,31 +125,120 @@ public class Usuarios {
 	}
 
 	public void comprarVoo(Agenda agenda, int data) {
+		boolean bool = true;
 		Scanner input = new Scanner(System.in);
-		//System.out.println("Insira a data da viagem: ");
-		//int data = input.nextInt();
 		System.out.println("Possuímos as viagens a seguir para o dia " + (data + 1));
 		Data dataEscolhida = agenda.datas[data];
 		dataEscolhida.imprimeVoosDoDia();
 		System.out.println("Digite o código da viagem escolhida: ");
-		int codigo = input.nextInt();
+		int codigo = 0;
+		while(bool) {
+			try {
+				if(input.hasNextInt()) {
+	    			codigo = input.nextInt();
+	        		bool = false;
+				} else {
+	    			input.next();
+	    			throw new OpcaoInvalida();
+	    		}
+	        	input.nextLine();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		bool = true;
 		int	codigoDoVoo = dataEscolhida.buscaVoo(codigo);
 		if(codigoDoVoo >= 0) {
 			System.out.println("Digite o número de passagens que gostaria de comprar: ");
-			int passagens = input.nextInt();
+			int passagens = 0;
+			while(bool) {
+				try {
+					if(input.hasNextInt()) {
+		    			passagens = input.nextInt();
+		        		bool = false;
+					} else {
+		    			input.next();
+		    			throw new OpcaoInvalida();
+		    		}
+		        	input.nextLine();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			bool = true;
 			System.out.println("Algum dos passageiros é menor de idade? Se sim, digite a quantidade, se não, digite 0");
-			int passageirosMenoresDeIdade = input.nextInt();
+			int passageirosMenoresDeIdade = 0;
+			while(bool) {
+				try {
+					if(input.hasNextInt()) {
+						passageirosMenoresDeIdade = input.nextInt();
+		        		bool = false;
+					} else {
+		    			input.next();
+		    			throw new OpcaoInvalida();
+		    		}
+		        	input.nextLine();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			bool = true;
 			System.out.println("Gostaria de comprar no setor de primeira classe(1) ou econômica(2)?");
-			int classe = input.nextInt(); 
+			int classe = 0; 
+			while(bool) {
+				try {
+					if(input.hasNextInt()) {
+						classe = input.nextInt();
+		        		bool = false;
+					} else {
+		    			input.next();
+		    			throw new OpcaoInvalida();
+		    		}
+		        	input.nextLine();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			bool = true;
 			System.out.println("Por favor, escolha os lugares das poltronas");
 			Voo vooEscolhido = dataEscolhida.listaDeVoos[codigoDoVoo];
 			vooEscolhido.imprimePoltronas(classe);
 			for(int i=0; i<passagens; i++) {
 				System.out.println("Escolha a cadeira: ");
 				System.out.println("Digite a linha: ");
-				int linha = input.nextInt();
+				int linha = 0;
+				while(bool) {
+					try {
+						if(input.hasNextInt()) {
+							linha = input.nextInt();
+			        		bool = false;
+						} else {
+			    			input.next();
+			    			throw new OpcaoInvalida();
+			    		}
+			        	input.nextLine();
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+				}
+				bool = true;
 				System.out.println("Digite a coluna: ");
-				int coluna = input.nextInt();
+				int coluna = 0;
+				while(bool) {
+					try {
+						if(input.hasNextInt()) {
+							coluna = input.nextInt();
+			        		bool = false;
+						} else {
+			    			input.next();
+			    			throw new OpcaoInvalida();
+			    		}
+			        	input.nextLine();
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+				}
+				bool = true;
 				vooEscolhido.adicionaPoltrona(linha, coluna, classe, getUsuarioID());
 				clientes[usuarioID].adicionaCompras(vooEscolhido, vooEscolhido.buscaPoltrona(linha,coluna,classe));
 			}
@@ -161,28 +259,113 @@ public class Usuarios {
 		int linha;
 		int coluna;
 		int vooID;
+		boolean bool = true;
 		
 		Scanner input = new Scanner(System.in);
 		
 		imprimeCompras();
 		System.out.println("Digite o código da compra a ser cancelada: ");
-		codigoCompra = input.nextInt();
-		
+		codigoCompra = 0;
+		while(bool) {
+			try {
+				if(input.hasNextInt()) {
+					codigoCompra = input.nextInt();
+	        		bool = false;
+				} else {
+	    			input.next();
+	    			throw new OpcaoInvalida();
+	    		}
+	        	input.nextLine();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		bool = true;
 		System.out.println("Confirme a data: ");
-		data = input.nextInt();
-		
+		data = 0;
+		while(bool) {
+			try {
+				if(input.hasNextInt()) {
+					data = input.nextInt();
+	        		bool = false;
+				} else {
+	    			input.next();
+	    			throw new OpcaoInvalida();
+	    		}
+	        	input.nextLine();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		bool = true;
 		System.out.println("Confirme o código do voo: ");
-		codigoVoo = input.nextInt();
-		
+		codigoVoo = 0;
+		while(bool) {
+			try {
+				if(input.hasNextInt()) {
+					codigoVoo = input.nextInt();
+	        		bool = false;
+				} else {
+	    			input.next();
+	    			throw new OpcaoInvalida();
+	    		}
+	        	input.nextLine();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		bool = true;
 		System.out.println("Confirme a classe (1-Primeira/2-Economica)");
-		classe = input.nextInt();
-		
+		classe = 0;
+		while(bool) {
+			try {
+				if(input.hasNextInt()) {
+					classe = input.nextInt();
+	        		bool = false;
+				} else {
+	    			input.next();
+	    			throw new OpcaoInvalida();
+	    		}
+	        	input.nextLine();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		bool = true;
 		System.out.println("Confirme a linha da poltrona: ");
-		linha = input.nextInt();
-		
+		linha = 0;
+		while(bool) {
+			try {
+				if(input.hasNextInt()) {
+					linha = input.nextInt();
+	        		bool = false;
+				} else {
+	    			input.next();
+	    			throw new OpcaoInvalida();
+	    		}
+	        	input.nextLine();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		bool = true;
 		System.out.println("Confirme a coluna da poltrona: ");
-		coluna = input.nextInt();
-		
+		coluna = 0;
+		while(bool) {
+			try {
+				if(input.hasNextInt()) {
+					coluna = input.nextInt();
+	        		bool = false;
+				} else {
+	    			input.next();
+	    			throw new OpcaoInvalida();
+	    		}
+	        	input.nextLine();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		bool = true;
 		Usuario clienteAtual = clientes[usuarioID];
 		Data dataDoVoo = agenda.datas[data - 1];
 		vooID = dataDoVoo.buscaVoo(codigoVoo);

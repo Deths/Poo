@@ -1,5 +1,3 @@
-// input.nextLine(); depois dos inputs de Ints.
-
 package teste;
 import java.util.Scanner;
 import agenda.*;
@@ -43,16 +41,28 @@ public class Teste {
 				System.out.println("-------------------------------------------------------");
 				try {
 					decisao = 0;
-					System.out.println("O que gostaria de fazer? (1-Cadastrar/2-Login)");
-					decisao = input.nextInt();
+					System.out.println("O que gostaria de fazer? (1 - Cadastrar / 2 - Login)");
+					if(input.hasNextInt())
+						decisao = input.nextInt();
+					else{
+						input.next();
+						throw new OpcaoInvalida();
+					}
 					input.nextLine();
+						
 					if(decisao != 1 && decisao != 2) {
 						throw new OpcaoInvalida();
 					}
 					
-					System.out.println("Você é um cliente ou um atendente? (1/2)");
-					tipoDeUsuario = input.nextInt();
+					System.out.println("Você é um cliente ou um atendente? (1 - Cliente / 2 - Atendente)");
+					if(input.hasNextInt())
+						tipoDeUsuario = input.nextInt();
+					else{
+						input.next();
+						throw new OpcaoInvalida();
+					}
 					input.nextLine();
+					
 					if(tipoDeUsuario != 1 && tipoDeUsuario != 2) {
 						throw new OpcaoInvalida();
 					}
@@ -102,7 +112,12 @@ public class Teste {
 							System.out.println("3- Deletar um voo");
 							System.out.println("4- Logout");
 							System.out.println("-------------------------------------------------------");
-							decisao = input.nextInt();
+							if(input.hasNextInt())
+								decisao = input.nextInt();
+							else{
+								input.next();
+								throw new OpcaoInvalida();
+							}
 							input.nextLine();
 							
 							switch(decisao) {
@@ -160,7 +175,12 @@ public class Teste {
 									mesSelecionado = input.nextLine();
 									
 									System.out.println("Em qual dia?");
-									diaSelecionado =  input.nextInt();
+									if(input.hasNextInt())
+										diaSelecionado = input.nextInt();
+									else{
+										input.next();
+										throw new OpcaoInvalida();
+									}
 									input.nextLine();
 									diaSelecionado--; //retificar data para ser usada como posição no vetor
 									
@@ -296,7 +316,12 @@ public class Teste {
 									mesSelecionado = input.nextLine();
 									
 									System.out.println("Em qual dia?");
-									diaSelecionado =  input.nextInt();
+									if(input.hasNextInt())
+										diaSelecionado = input.nextInt();
+									else{
+										input.next();
+										throw new OpcaoInvalida();
+									}
 									input.nextLine();
 									diaSelecionado--; //retificar data para ser usada como posição no vetor
 			
@@ -392,7 +417,7 @@ public class Teste {
 								
 								//user logout;
 								case 4:
-									System.out.println("Logout");
+									System.out.println(" - - - - - Logout - - - - - ");
 									usuarios.logout();
 									loop = false;
 									break;
@@ -404,7 +429,12 @@ public class Teste {
 							System.out.println("4- Cancelar passagens adiquiridas");
 							System.out.println("5- Logout");
 							System.out.println("-------------------------------------------------------");
-							decisao = input.nextInt();
+							if(input.hasNextInt())
+								decisao = input.nextInt();
+							else{
+								input.next();
+								throw new OpcaoInvalida();
+							}
 							input.nextLine();
 							
 							switch(decisao) {
@@ -460,7 +490,12 @@ public class Teste {
 									mesSelecionado = input.nextLine();
 									
 									System.out.println("Em qual dia?");
-									diaSelecionado =  input.nextInt();
+									if(input.hasNextInt())
+										diaSelecionado = input.nextInt();
+									else{
+										input.next();
+										throw new OpcaoInvalida();
+									}
 									input.nextLine();
 									
 									diaSelecionado--; //retificar data para ser usada como posição no vetor
@@ -557,7 +592,7 @@ public class Teste {
 									}
 									break;	
 								case 5:
-									System.out.println("Logout");
+									System.out.println(" - - - - - Logout - - - - - ");
 									usuarios.logout();
 									loop = false;
 									break;
